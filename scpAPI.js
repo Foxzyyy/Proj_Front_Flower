@@ -1,75 +1,51 @@
-const API_URL = "http://localhost:3000/books"; // Backend ที่รันอยู่บนพอร์ต 3000
+document.addEventListener("DOMContentLoaded", () => {
+    const orderForm = document.getElementById("order-form");
+    const ordersBody = document.getElementById("orders-body");
+    const apiUrl = "http://localhost:5000/api/orders";
 
-// โหลดรายการหนังสือ
-async function fetchBooks() {
-    try {
-        const res = await fetch(API_URL);
-        if (!res.ok) throw new Error("โหลดหนังสือไม่สำเร็จ");
-
-        const books = await res.json();
-        const bookList = document.getElementById("book-list");
-        bookList.innerHTML = "";
-
-        books.forEach((book, index) => {
+    const fetchOrders = async () => {
+        const res = await fetch(apiUrl);
+        const orders = await res.json();
+        ordersBody.innerHTML = "";
+        orders.forEach(order => {
             const row = document.createElement("tr");
             row.innerHTML = `
-                <td>${index + 1}</td>
-                <td>${book.title}</td>
-                <td>${book.author}</td>
+                <td>${order.user}</td>
+                <td>${order.address}</td>
+                <td>${order.phone}</td>
+                <td>${order.flower}</td>
+                <td>${order.cost}</td>
+                <td>${order.quantity}</td>
+                <td>${order.cost * order.quantity}</td>
+                <td>${order.status}</td>
                 <td>
-                    <button class="edit" onclick="editBook(${book.id})"> แก้ไข</button>
-                    <button class="delete" onclick="deleteBook(${book.id})"> ลบ</button>
+                    <button onclick="deleteOrder('${order.id}')">Delete</button>
                 </td>
             `;
-            bookList.appendChild(row);
+            ordersBody.appendChild(row);
         });
+    };
 
-    } catch (error) {
-        console.error("Error:", error);
-    }
-}
-
-// เพิ่มหนังสือใหม่
-document.getElementById("book-form").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const title = document.getElementById("title").value;
-    const author = document.getElementById("author").value;
-
-    if (!title || !author) return alert("กรุณากรอกข้อมูลให้ครบ");
-
-    await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, author })
+    orderForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(orderForm);
+        const data = Object.fromEntries(formData);
+        data.cost = Number(data.cost);
+        data.quantity = Number(data.quantity);
+        
+        await fetch(apiUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+        });
+        orderForm.reset();
+        fetchOrders();
     });
 
-    document.getElementById("title").value = "";
-    document.getElementById("author").value = "";
-    fetchBooks();
+    window.deleteOrder = async (id) => {
+        await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
+        fetchOrders();
+    };
+
+    fetchOrders();
 });
-
-// ลบหนังสือ
-async function deleteBook(id) {
-    await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-    fetchBooks();
-}
-
-// แก้ไขหนังสือ
-async function editBook(id) {
-    const newTitle = prompt("ป้อนชื่อหนังสือใหม่:");
-    const newAuthor = prompt("ป้อนชื่อผู้แต่งใหม่:");
-
-    if (!newTitle || !newAuthor) return alert("กรุณากรอกข้อมูลให้ครบ");
-
-    await fetch(`${API_URL}/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title: newTitle, author: newAuthor })
-    });
-
-    fetchBooks();
-}
-
-// โหลดหนังสือเมื่อเปิดหน้าเว็บ
-fetchBooks();

@@ -3,31 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book List</title>
+    <title>Flower Order Management</title>
     <link rel="stylesheet" href="stye.css">
 </head>
 <body>
     <div class="container">
-        <h1>Books</h1>
-
-        <!-- ฟอร์มเพิ่มหนังสือ -->
-        <form id="book-form">
-            <input type="text" id="title" placeholder="ชื่อหนังสือ" required>
-            <input type="text" id="author" placeholder="ผู้แต่ง" required>
-            <button type="submit">เพิ่มหนังสือ</button>
+        <h1>Flower Order Management</h1>
+        <form id="order-form">
+            <input name="user" placeholder="User" required>
+            <input name="address" placeholder="Address" required>
+            <input name="phone" placeholder="Phone" required>
+            <input name="flower" placeholder="Flower" required>
+            <input name="cost" placeholder="Cost" type="number" required>
+            <input name="quantity" placeholder="Quantity" type="number" required>
+            <input name="status" placeholder="Status" required>
+            <button type="submit">Add Order</button>
         </form>
 
-        <!-- ตารางแสดงรายการหนังสือ -->
         <table>
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Action</th>
+                    <th>User</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Flower</th>
+                    <th>Cost</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="book-list"></tbody>
+            <tbody id="orders-body">
+                <!-- Data will be inserted here -->
+            </tbody>
         </table>
     </div>
 

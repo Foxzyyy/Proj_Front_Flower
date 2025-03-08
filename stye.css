@@ -4,65 +4,78 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    height: 100vh;
+    flex-direction: column;
 }
 
 .container {
-    width: 80%;
     background: white;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px; /* ดันตารางขึ้นด้านบน */
+    width: 80%;
+    max-width: 800px;
 }
 
 h1 {
     text-align: center;
-    color: #333;
 }
 
-form {
+.order-form {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
     gap: 10px;
+    justify-content: space-between;
     margin-bottom: 20px;
 }
 
-input {
-    padding: 8px;
-    width: 30%;
+.order-form input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-button {
-    padding: 8px 15px;
-    background: green;
+.order-form button {
+    background: #28a745;
     color: white;
     border: none;
+    padding: 10px;
     cursor: pointer;
+    border-radius: 5px;
+}
+
+.order-form button:hover {
+    background: #218838;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
 }
 
-th, td {
+table, th, td {
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 8px;
     text-align: center;
 }
 
 th {
-    background-color: #0b20dd;
+    background: #007bff;
     color: white;
 }
 
-button.edit {
-    background: orange;
+td button {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
 }
 
-button.delete {
-    background: red;
+td button:hover {
+    background: darkred;
 }
