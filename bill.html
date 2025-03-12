@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>แสดงข้อมูลลูกค้า</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>📌 รายชื่อสินค้า</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ชื่อดอกไม้</th>
+          <th>ราคา</th>
+          <th>จำนวนที่ซื้อ</th>
+          <th>ราคารวม</th>
+          <th>สถานะ</th>
+          <th>เวลา</th>
+        </tr>
+      </thead>
+      <tbody id="productbuy"></tbody>
+    </table>
+    <h1>📌 รายชื่อลูกค้า</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ชื่อ</th>
+          <th>ที่อยู่</th>
+          <th>เบอร์ติดต่อ</th>
+        </tr>
+      </thead>
+      <tbody id="productcustomer"></tbody>
+    </table>
+
+    <button onclick="deleteAllData()">กลับหน้าหลัก</button>
+
+    <script>
+      async function deleteAllData() {
+        if (!confirm("⚠️ คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลทั้งหมด?")) {
+          return;
+        }
+
+        const response = await fetch("http://localhost:3000/delete-all", {
+          method: "POST",
+        });
+        const result = await response.json();
+        alert(result.message);
+        window.location.replace("index.html"); // ใช้ replace แทน href
+      }
+    </script>
+
+    <script src="scriptbill.js"></script>
+  </body>
+</html>

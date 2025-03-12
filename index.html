@@ -3,43 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flower Order Management</title>
-    <link rel="stylesheet" href="stye.css">
+    <title>Bouquest Flower Shop</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Flower Order Management</h1>
-        <form id="order-form">
-            <input name="user" placeholder="User" required>
-            <input name="address" placeholder="Address" required>
-            <input name="phone" placeholder="Phone" required>
-            <input name="flower" placeholder="Flower" required>
-            <input name="cost" placeholder="Cost" type="number" required>
-            <input name="quantity" placeholder="Quantity" type="number" required>
-            <input name="status" placeholder="Status" required>
-            <button type="submit">Add Order</button>
-        </form>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>User</th>
-                    <th>Address</th>
-                    <th>Phone</th>
-                    <th>Flower</th>
-                    <th>Cost</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="orders-body">
-                <!-- Data will be inserted here -->
-            </tbody>
-        </table>
+    <header>
+        <h1>🌸 Bouquet Flower Shop 🌸</h1>
+    </header>
+    <div class="topnav" style="margin-top: 10px;">
+        <button id="openLogin" class="btn" style="margin-left: 1000px;">Login For Owner</button>
+        <button onclick="confirmAndRedirect()" class="btn">หน้าตะกร้าสินค้า</button>
     </div>
+ <!-- Popup Login -->
+ <div id="loginPopup" class="popup">
+    <div class="popup-content">
+        <span class="close">&times;</span>
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p id="loginMessage"></p>
+    </div>
+</div>
 
-    <script src="scpAPI.js"></script>
+
+<div class="container">
+    <h1>Product Management</h1>
+    <div class="product-container" id="productList"></div>
+</div>
+
+<script>
+    function confirmAndRedirect() {
+        if (confirm("⚠️ คุณต้องการไปยังหน้าตะกร้าสินค้าหรือไม่?")) {
+            window.location.href = "buyorder.html"; // เปลี่ยนหน้าไป nextpage.html
+        }
+    }
+</script>
+<script src="script.js"></script>
 </body>
 </html>

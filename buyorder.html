@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>รายการที่ซื้อ</h1>
+        <div class="product-container" id="productbuy"></div>
+    </div>
+    <div class="container">
+        <h1>ที่อยู่</h1>
+        <div class="product-container" id="customerList"></div>
+    </div>
+
+    <button id="openPopup" >➕ เพิ่มที่อยู่</button>
+    <button id="confirmBtn" >✅ ยืนยัน</button>
+
+    <tbody id="combinedData"></tbody>
+
+    <!-- Popup เพิ่มข้อมูลลูกค้า -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span id="closePopupCustomer" class="close">&times;</span>
+            <h2>เพิ่มข้อมูลลูกค้า</h2>
+            <form id="customerForm">
+                <input type="text" id="name" placeholder="ชื่อ" required>
+                <input type="text" id="address" placeholder="ที่อยู่" required>
+                <input type="number" id="phone" placeholder="เบอร์โทร" required>
+                <button type="submit" class="btn">บันทึก</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Popup ยืนยัน -->
+    <div id="popupf" class="popup">
+        <div class="popup-content">
+            <h2>✅ ยืนยันสำเร็จ</h2>
+            <img src="https://packtica.co.th/wp-content/uploads/2024/02/1.-QR-Code-Model-1_1.png" width="200" height="200">
+            <br>
+            <button id="nextPageBtn" class="btn">➡️ ไปหน้าถัดไป</button>
+            <button id="closePopupConfirm" class="btn">❌ ปิด</button>
+        </div>
+    </div>
+
+    <script src="buyorderscript.js" defer></script>
+</body>
+</html>
