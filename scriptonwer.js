@@ -1,7 +1,7 @@
 
 // ✅ โหลดสินค้าทั้งหมด
 async function fetchProducts() {
-    const res = await fetch("node77369-env-4775217.proen.app.ruk-com.cloud:11682/products");
+    const res = await fetch("http://localhost:3000/products");
     const products = await res.json();
 
     const productList = document.getElementById("productList");
@@ -32,7 +32,7 @@ document.getElementById("productForm").addEventListener("submit", async (e) => {
     const stroage = document.getElementById("stroage").value;
     const price = document.getElementById("price").value;
     
-    await fetch("node77369-env-4775217.proen.app.ruk-com.cloud:11682/products", {
+    await fetch("http://localhost:3000/products", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ image, name, stroage, price })
@@ -41,7 +41,7 @@ document.getElementById("productForm").addEventListener("submit", async (e) => {
 });
 // ✅ ลบสินค้า
 async function deleteProduct(id) {
-    await fetch(`hnode77369-env-4775217.proen.app.ruk-com.cloud:11682/products/${id}`, { method: "DELETE" });
+    await fetch(`http://localhost:3000/products/${id}`, { method: "DELETE" });
     fetchProducts();
 }
 // ✅ แก้ไขสินค้า
@@ -56,7 +56,7 @@ async function editProduct(id, oldImage, oldName, oldStroage, oldPrice) {
         return;
     }
 
-    await fetch(`node77369-env-4775217.proen.app.ruk-com.cloud:11682/products/${id}`, {
+    await fetch(`http://localhost:3000/products/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ image, name, stroage, price })

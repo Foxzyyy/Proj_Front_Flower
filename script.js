@@ -1,7 +1,7 @@
 
 // ✅ โหลดสินค้าทั้งหมด
 async function fetchProducts() {
-    const res = await fetch("node77369-env-4775217.proen.app.ruk-com.cloud:11682/products");
+    const res = await fetch("http://localhost:3000/products");
     const products = await res.json();
     document.getElementById("productList").innerHTML = products.map((product, index) => `
         <div class="product-card">
@@ -28,7 +28,7 @@ async function openPopup(name, price, index) {
 
     const total = numbuy * price;
 
-    await fetch("node77369-env-4775217.proen.app.ruk-com.cloud:11682/orders", {
+    await fetch("http://localhost:3000/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ namef: name, numbuy, cost: price, total, status: "incomplete" })
@@ -71,7 +71,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    const response = await fetch("node77369-env-4775217.proen.app.ruk-com.cloud:11682/login", {
+    const response = await fetch("http://localhost:3000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password })
