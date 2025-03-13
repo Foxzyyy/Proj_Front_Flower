@@ -50,7 +50,7 @@ async function editorder(id, name, numbuy, cost, total) {
         const response = await fetch(`http://localhost:3000/orders/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ namef: name, numbuy: newNumbuy, cost, total: totalNew, status: "incomplete" })
+            body: JSON.stringify({ namef: name, numbuy: newNumbuy, cost, total: totalNew, status: "complete" })
         });
 
         if (!response.ok) {
