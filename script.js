@@ -16,7 +16,7 @@ async function fetchProducts() {
 }
 
 
-// ✅ เพิ่มสินจำนวนสินค้าที่ซื้อ
+// ✅ เพิ่มจำนวนสินค้าที่ซื้อ
 async function openPopup(name, price, index) {
     const numbuyElements = document.getElementsByClassName("numbuy");
     const numbuy = numbuyElements[index] ? numbuyElements[index].value : null;

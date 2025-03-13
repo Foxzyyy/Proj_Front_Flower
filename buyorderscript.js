@@ -34,7 +34,6 @@ async function deleteorder(id) {
         alert("Failed to delete order");
     }
 }
-
 // ✅ แก้ไขสินค้า
 async function editorder(id, name, numbuy, cost, total) {
     const newNumbuy = prompt("Enter new quantity:", numbuy);
@@ -46,18 +45,34 @@ async function editorder(id, name, numbuy, cost, total) {
 
     const totalNew = newNumbuy * cost;
 
+    // Ask for confirmation before changing status to "complete"
+    if (!confirm("คุณต้องการเปลี่ยนสถานะเป็น 'Complete' ใช่หรือไม่?")) {
+        return; // ถ้าผู้ใช้กดยกเลิก จะไม่ทำการอัปเดต
+    }
+
     try {
+        // ส่งคำขอ PUT ไปยังเซิร์ฟเวอร์พร้อมกับการอัปเดตสถานะเป็น "complete"
         const response = await fetch(`http://localhost:3000/orders/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ namef: name, numbuy: newNumbuy, cost, total: totalNew, status: "complete" })
+            body: JSON.stringify({
+                namef: name,            // ชื่อสินค้า
+                numbuy: newNumbuy,      // จำนวนสินค้าใหม่
+                cost: cost,             // ราคาสินค้า
+                total: totalNew,        // ราคารวมที่คำนวณใหม่
+                status: "complete"      // ตั้งสถานะเป็น "complete"
+            })
         });
 
+        // ตรวจสอบการตอบกลับจากเซิร์ฟเวอร์
         if (!response.ok) {
             throw new Error("ไม่สามารถอัปเดตข้อมูลได้");
         }
 
-        alert("Order updated successfully!");
+        // แสดงข้อความเมื่ออัปเดตสำเร็จ
+        alert("Order updated successfully! The status has been set to 'complete'.");
+        
+        // รีเฟรชรายการคำสั่งซื้อ
         fetchbuy();
     } catch (error) {
         alert("❌ มีข้อผิดพลาด: " + error.message);
