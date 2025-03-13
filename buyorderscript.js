@@ -1,6 +1,6 @@
 
 async function fetchbuy() {
-    const res = await fetch("http://localhost:3000/orders");
+    const res = await fetch("node77369-env-4775217.proen.app.ruk-com.cloud:11682/orders");
     const buyorders = await res.json();
     
     const productBuyContainer = document.getElementById("productbuy");
@@ -25,7 +25,7 @@ async function deleteorder(id) {
         return;
     }
 
-    const response = await fetch(`http://localhost:3000/orders/${id}`, { method: "DELETE" });
+    const response = await fetch(`node77369-env-4775217.proen.app.ruk-com.cloud:11682/orders/${id}`, { method: "DELETE" });
 
     if (response.ok) {
         alert("Order deleted successfully!");
@@ -52,7 +52,7 @@ async function editorder(id, name, numbuy, cost, total) {
 
     try {
         // ส่งคำขอ PUT ไปยังเซิร์ฟเวอร์พร้อมกับการอัปเดตสถานะเป็น "complete"
-        const response = await fetch(`http://localhost:3000/orders/${id}`, {
+        const response = await fetch(`node77369-env-4775217.proen.app.ruk-com.cloud:11682/orders/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -98,7 +98,7 @@ document.getElementById("customerForm").addEventListener("submit", async functio
     const address = document.getElementById("address").value;
     const phone = document.getElementById("phone").value;
 
-    const response = await fetch("http://localhost:3000/customers", {
+    const response = await fetch("node77369-env-4775217.proen.app.ruk-com.cloud:11682/customers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ customer_name: name, address, phone }) 
@@ -114,7 +114,7 @@ document.getElementById("customerForm").addEventListener("submit", async functio
 });
 
 async function fetchCustomers() {
-    const res = await fetch("http://localhost:3000/customers");
+    const res = await fetch("node77369-env-4775217.proen.app.ruk-com.cloud:11682/customers");
     const customers = await res.json();
     const customerList = document.getElementById("customerList");
 
@@ -135,7 +135,7 @@ async function deletcustomer(id) {
         return;
     }
 
-    const response = await fetch(`http://localhost:3000/customers/${id}`, { method: "DELETE" });
+    const response = await fetch(`node77369-env-4775217.proen.app.ruk-com.cloud:11682/customers/${id}`, { method: "DELETE" });
 
     if (response.ok) {
         alert("Order deleted successfully!");
@@ -156,7 +156,7 @@ async function editcustomer(id, name, address, phone) {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/customers/${id}`, {
+        const response = await fetch(`node77369-env-4775217.proen.app.ruk-com.cloud:11682/customers/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ customer_name, address: newAddress, phone: parseInt(newPhone) })

@@ -1,6 +1,6 @@
 async function fetchCustomerOrders() {
     try {
-        const res = await fetch("http://localhost:3000/orders");
+        const res = await fetch("node77369-env-4775217.proen.app.ruk-com.cloud:11682/orders");
         const buyorders = await res.json();
         const productBuyContainer = document.getElementById("productbuy");
 
@@ -27,7 +27,7 @@ async function fetchCustomerOrders() {
 
 async function fetchCustomer() {
     try {
-        const res = await fetch("http://localhost:3000/customers");
+        const res = await fetch("node77369-env-4775217.proen.app.ruk-com.cloud:11682/customers");
         const customers = await res.json();
         const productCustomerContainer = document.getElementById("productcustomer");
 
